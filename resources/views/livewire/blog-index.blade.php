@@ -47,8 +47,8 @@
               <td>{{ $item->name }}</td>
               <td>{{ $item->body }}</td>
               <td>
-                <button wire:click.prevent="edit({{ $item->id }})"  class="btn btn-info" >Edit</button>
-                <button wire:click.prevent="delete({{ $item->id }})" class="btn btn-danger mt-2">Delete</button>
+                <button wire:click.prevent="edit({{ $item->id }})"  class="btn btn-info" ></button>
+                <button wire:click.prevent="deleteConfirm({{ $item->id }})" class="btn btn-danger mt-2">Delete</button>
               </td>
             </tr>   
             @endforeach          
