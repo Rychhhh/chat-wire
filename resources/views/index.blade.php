@@ -6,7 +6,6 @@
 
 @section('script')
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="sweetalert2.all.min.js"></script>
 
     <script>
 
@@ -20,9 +19,22 @@
           $('#exampleModal').modal('hide');
        });
 
-      // Confirm modal
+      // Confirm Alert
+      window.addEventListener('swal:confirm', event => {
+         Swal.fire({
+            title: event.detail.title,
+            text: event.detail.text,
+            icon: event.detail.icon,
+            buttons: true,
+            dangerMode: true,
+         }).then(willDelete) => {
+            if(willDelete) {
+               window.livewire.emit('Delete', event.detail.id)
+            }
+         }
+      })
 
-      //  Alert
+      // Info Alert
       window.addEventListener('swal:modal', event => {
          Swal.fire({
              'title': event.detail.title,
