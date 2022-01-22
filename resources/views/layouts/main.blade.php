@@ -18,6 +18,8 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
     
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    
     @livewireStyles
   </head>
 
