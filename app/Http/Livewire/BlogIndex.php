@@ -12,6 +12,7 @@ class BlogIndex extends Component
     // kondisi modal edit dan add modal 
     public $showModalEdit = false;
 
+    protected $listeners = ['delete'];
 
     public function render()
     {
@@ -96,18 +97,21 @@ class BlogIndex extends Component
 
    }
 
+   public function deleteConfirm($id)
+    {
+        // Confirm Alert
+        $this->dispatchBrowserEvent('swal:confirm', [
+            'type' => 'warning',
+            'icon' => 'warning',
+            'title' => 'Are you sure?',
+            'text' => '',
+            'id' => $id
+        ]);
+   }
+
    public function delete($id)
    {
-       if($id) {
-           $blog = Blog::find($id);
-           $blog->delete();
-       }
-
-        // Sweet Alert
-        $this->dispatchBrowserEvent('swal:modal', [
-            'icon' => 'info',
-            'text' => 'Data Berhasil Dihapus'
-        ]);
-
+       Blog::where('id', $id)->delete();
    }
+
 }
