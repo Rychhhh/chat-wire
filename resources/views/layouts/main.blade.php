@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
     
     <link rel="stylesheet" href="sweetalert2.min.css">
+
+    @yield('css')
     
     @livewireStyles
   </head>
@@ -62,7 +64,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="#" >
+          <a class="nav-link collapsed" href="{{ url('pesan') }}" >
             <i class="fas fa-fw fa-cog"></i>
             <span>Chat Live</span>
           </a>
