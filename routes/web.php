@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Chat\ListPercakapan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,9 @@ Route::get('/', function () {
 });
 
 Route::get('/livewire', function () {
-    return view('index');
-})->name('livewire');
+    return view('Tampilan.index');
+});
 
-
+Route::get('pesan', function() {
+    return view('Tampilan.chat');
+})->name('pesan');
