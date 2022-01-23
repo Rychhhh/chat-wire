@@ -35,11 +35,6 @@
               <th>Body</th>
               <th colspan="3">Action</th>
           </thead>
-          <tfoot>
-            <th>No</th>
-            <th>Name</th>
-            <th>Body</th>
-            <th>Action</th>
             <tbody>    
             @foreach ($blog as $item)
             <tr class="odd">
@@ -47,8 +42,8 @@
               <td>{{ $item->name }}</td>
               <td>{{ $item->body }}</td>
               <td>
-                <button wire:click.prevent="edit({{ $item->id }})"  class="btn btn-info" ></button>
-                <button wire:click.prevent="deleteConfirm({{ $item->id }})" class="btn btn-danger mt-2">Delete</button>
+                <button wire:click.prevent="edit({{ $item->id }})"  class="btn btn-info mt-2" >🧷</button>
+                <button wire:click.prevent="deleteConfirm({{ $item->id }})" class="btn btn-danger mt-2">🗑</button>
               </td>
             </tr>   
             @endforeach          
