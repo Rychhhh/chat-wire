@@ -1,7 +1,7 @@
 <div>
 
     <div class="container">
-    <h3 class=" text-center">Messaging</h3>
+    <h3 class=" text-center">Chat</h3>
     <div class="messaging">
           <div class="inbox_msg">
             <div class="inbox_people">
@@ -19,27 +19,36 @@
               </div>
               <div class="inbox_chat">
 
+                {{--
+                   foreach ini hanya untuk looping data 
+                  percakapan yang diambil data users saja seperti ( nama, email, dll )  
+                  note: sambil liat model percakapan
+                --}}
                 @foreach ($percakapans as $item)
 
                 @php
+                    // for random image
                     $string = mt_rand(15, 20);
 
                     $date = date(now());
 
-                    if ($date = now()) {
-                      echo 'today';
-                    } else {
-                      $date;
-                    }
                 @endphp
+
+              {{ dd(auth()->id()) }}
                     
-                <div class="chat_list active_chat">
-                  <div class="chat_people">
+                <div class="chat_list {{ $item->id === $pilihanPesan->id ? 'active_chat' : '' }}" style="cursor: pointer">
+
+                  <div class="chat_people" wire:click.prevent='viewPesan({{ $item->id }})'>
                     <div class="chat_img"> <img src="https://randomuser.me/api/portraits/women/{{ $string }}.jpg" alt="sunil"> </div>
                     <div class="chat_ib">
-                      <h5>{{ $item->Penerima->name }} <span class="chat_date">{{ $item->created_at->format($date->created_at) }}</span></h5>
-                      <p>Test, which is a new approach to have all solutions 
-                        astrology under one roof.</p>
+
+                    @if (!is_null($item->pesan->first()))
+                                           
+                     <h5>{{ $item->penerima->name }} <span class="chat_date">{{ $date = now() ?  'Today ' : 'Yesterday ' }}{{ $item->pesan->first()->created_at->format($date ? 'H:i' : 'd/m/Y H:i') }}</span></h5>
+                     <p>{{$item->pesan->last()->body}}</p>
+
+                     @endif 
+
                     </div>
                   </div>
                 </div>
@@ -55,12 +64,19 @@
 
                 <div class="incoming_msg">
                   <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                  <div class="received_msg">
-                    <div class="received_withd_msg">
-                      <p>Test which is a new approach to have all
-                        solutions</p>
-                      <span class="time_date"> 11:01 AM    |    June 9</span></div>
-                  </div>
+
+                  @if (!is_null($pilihanPesan))
+                      
+                      @foreach ($pilihanPesan->pesan as $message)
+                      <div class="received_msg">
+                        <div class="received_withd_msg">
+                          <p>{{$message->body}}</p>
+                          <span class="time_date">{{$message->created_at->format('H:i:s')}}</span></div>
+                        </div>
+                        @endforeach
+
+                    @endif
+
                 </div>
                 <div class="outgoing_msg">
                   <div class="sent_msg">

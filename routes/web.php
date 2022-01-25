@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Livewire\Chat\ListPercakapan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,15 +12,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+require __DIR__.'/auth.php';
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/dashboard', function() {
+    return view('dashboard');
+})->name('dashboard');
 
 Route::get('/livewire', function () {
     return view('Tampilan.index');
-});
+})->middleware(['auth'])->name('livewire');
 
 Route::get('pesan', function() {
     return view('Tampilan.chat');
-})->name('pesan');
+})->middleware(['auth'])->name('pesan');
+
