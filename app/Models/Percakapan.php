@@ -9,19 +9,32 @@ class Percakapan extends Model
 {
     use HasFactory;
 
-    // relasi ke pesan
-    public function Pesan()
+    protected $table = 'percakapans';
+
+    // hasMany = menitipkan atau memberi id ke table yang di hasMany
+    // belongsTo = dititipkan atau mengambil id table lain  dari table yang di belongsTo
+     
+    // penjelasan tag dibawah
+    // jadi model percakapan ini menitipkan id ke ->  model pesan
+    // dan function pesan dibawah itu berguna saat looping di view list-percakapan ( coba cek ) 
+    
+    // dan fungsi pengirim() dan penerima() berguna untuk mengambil setiap id percakapan
+
+    // setiap percakapan mempunyai banyak pesan ( hasMany )
+    public function pesan()
     {
-        return $this->belongsTo(Pesan::class);
+        return $this->hasMany(Pesan::class, 'percakapans_id');
     }
 
-    public function Pengirim()
+    // setiap percakapan mempunyai 1 id pengirim
+    public function pengirim()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'pengirim_id');
     }
 
-    public function Penerima()
+    // setiap percakapan mempunyai 1 id penerima
+    public function penerima()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'penerima_id');
     }
 }

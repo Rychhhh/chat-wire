@@ -17,8 +17,8 @@ class CreatePercakapansTable extends Migration
             $table->id();
             $table->unsignedBigInteger('pengirim_id');
             $table->unsignedBigInteger('penerima_id');
-            $table->foreign('pengirim_id')->references('id')->on('users');
-            $table->foreign('penerima_id')->references('id')->on('users');
+            $table->foreign('pengirim_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('penerima_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('container')
+
    <livewire:blog-index></livewire:blog-index>
 
 @endsection

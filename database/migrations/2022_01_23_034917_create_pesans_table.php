@@ -15,8 +15,8 @@ class CreatePesansTable extends Migration
     {
         Schema::create('pesans', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('percakapan_id')->constrained();
-            $table->unsignedBigInteger('user_id')->constrained();
+            $table->foreignId('percakapans_id')->constrained();
+            $table->foreignId('users_id')->constrained();
             $table->text('body');
             $table->timestamps();
         });
