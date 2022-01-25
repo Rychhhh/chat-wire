@@ -9,12 +9,16 @@ class Pesan extends Model
 {
     use HasFactory;
 
-    public function Percakapan()
+    protected $table = 'pesans';
+
+    // setiap pesan memiliki 1 percakapan
+    public function percakapan()
     {
         return $this->belongsTo(Percakapan::class);
     }
 
-    public function User()
+    // setiap pesan memiliki 1 id 
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
