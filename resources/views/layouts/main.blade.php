@@ -220,6 +220,9 @@
                 </div>
               </li>
 
+              <li class="profile">
+                {{ Auth::user()->name }}
+              </li>
 
             </ul>
           </nav>
