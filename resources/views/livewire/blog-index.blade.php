@@ -74,7 +74,7 @@
                 <form>
                    <div class="mb-3">
                       <label for="name" class="col-form-label">Name:</label>
-                      <input type="text" wire:model="name"  class="form-control @error('name') is-invalid @enderror" name="name">
+                      <input type="text" wire:model.defer="name"  class="form-control @error('name') is-invalid @enderror" name="name">
 
                       @error('name')
                         <div class="invalid-feedback">
