@@ -9,7 +9,7 @@ class Pesan extends Model
 {
     use HasFactory;
 
-    protected $table = 'pesans';
+    protected $guarded = []; // agar bisa send message
 
     // setiap pesan memiliki 1 percakapan
     public function percakapan()
